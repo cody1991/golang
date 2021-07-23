@@ -1,11 +1,11 @@
 ```
 go mod init hello
 
-go run go.main
+go run main.go
 
-go build go.main
+go build main.go
 
-go install go.main
+go install main.go
 
 export GOPATH=/Users/cody/Desktop/tencent/golang/22
 export GOBIN=$GOPATH/bin
