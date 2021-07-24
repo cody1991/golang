@@ -21,6 +21,11 @@ func main() {
 	age := Age(1)
 	age.String()
 
+	sm := Age.String
+
+	// 第一个参数必须是接收者
+	sm(age)
+
 	age.Modify(20)
 	age.String()
 }
