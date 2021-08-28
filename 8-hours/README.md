@@ -58,3 +58,14 @@ func main() {
 }
 
 ```
+
+# 适合做什么
+
+- 云计算基础设施
+  - docker, kubernetes, etcd, consul, cloudflare CDN, 七牛存储
+- 基础后端软件
+  - tidb, influxdb, cockroachdb
+- 微服务
+  - go-kit, micro, monzo bank 的 typthon, bilibili
+- 互联网基础设施
+  - 以太坊, hyperledger
