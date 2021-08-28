@@ -2,6 +2,11 @@ package main
 
 import "fmt"
 
+func init() {
+	// 执行
+	fmt.Println("init")
+}
+
 func sum(a int, b int) int {
 	fmt.Println("a", a)
 	fmt.Println("b", b)
