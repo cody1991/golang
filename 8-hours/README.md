@@ -69,3 +69,10 @@ func main() {
   - go-kit, micro, monzo bank 的 typthon, bilibili
 - 互联网基础设施
   - 以太坊, hyperledger
+
+# 不足
+
+- 包管理，在 GitHub 上，个人账号
+- 无泛化类型
+- 所有 Exception 都用 Error 处理（无 try catch)
+- 对 C 的降级处理，不是无缝，没有 C 降级到 asm 那么完美（序列化问题）
