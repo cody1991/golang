@@ -76,3 +76,7 @@ func main() {
 - 无泛化类型
 - 所有 Exception 都用 Error 处理（无 try catch)
 - 对 C 的降级处理，不是无缝，没有 C 降级到 asm 那么完美（序列化问题）
+
+# 关闭 module
+
+`go env -w GO111MODULE=off`
