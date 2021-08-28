@@ -1,4 +1,4 @@
-package main
+package main // 有 main 函数的都是 main 包
 
 import (
 	"fmt"
