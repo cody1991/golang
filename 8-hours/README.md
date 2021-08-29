@@ -209,3 +209,15 @@ func main () {
 	showAnimal(&dog)
 }
 ```
+
+# 类型断言
+
+```go
+value, ok := arg.(string)
+
+if !ok {
+	fmt.Println("arg is not a string")
+} else {
+	fmt.Println(value, "is a string")
+}
+```
