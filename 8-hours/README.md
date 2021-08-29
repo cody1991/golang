@@ -400,3 +400,7 @@ select {
 - GOPROXY 下载的地址，direct表示如果找不到会回到源 GitHub 地址下载
 - GOSUMOD 校验第三方库完整性
 - GOPRIVATE 私有第三方库在本地放置好，不用下载校验，可以用正则
+
+## 替换包版本
+
+`go mod edit -replace=xxx@1.0.0=xxx@1.0.1`
