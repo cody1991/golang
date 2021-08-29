@@ -6,8 +6,8 @@ import (
 )
 
 type Server struct {
-	Ip   string
-	Port int
+	Ip   string `json:"ip"`
+	Port int    `json:"port"`
 }
 
 // 创建一个server接口
