@@ -231,3 +231,35 @@ if !ok {
   - value
 
 `type + value = pair` pair 对
+
+# reflect 包
+
+- ValueOf
+  - func ValueOf(i interface) Value {...}
+  - 动态获取输入参数接口中的数据的值，如果接口为空返回 0
+- TypeOf
+  - func TypeOf(i interface) Type {...}
+  - 动态获取输入参数接口中的类型，如果接口为空返回 nil
+
+```go
+inputType := reflect.TypeOf(input)
+inputValue := reflect.ValueOf(input)
+
+fmt.Println("reflectMethod", inputType.Name(), inputValue)
+
+// input 类型的 field 数量： NumField()
+for i := 0; i < inputType.NumField(); i++ {
+
+	// 取得第 i 个 field
+	field := inputType.Field(i)
+	// 取得第 i 个 field 的值
+	value := inputValue.Field(i)
+
+	fmt.Printf("%s: %v = %v\n", field.Name, field.Type, value)
+}
+
+for i := 0; i < inputType.NumMethod(); i++ {
+	m := inputType.Method(i)
+	fmt.Printf("%s: %v", m.Name, m.Type)
+}
+```
