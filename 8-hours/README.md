@@ -362,3 +362,15 @@ GMP => gorountine + processor + thread
 - 抢占
   - 协程切换成本低
 - 全局 G 队列
+
+## channel & select
+
+```go
+select {
+	case <-channel1:
+		// 如果 channel1 成功读到数据，进行该 case 处理语句
+	case channel2 <- 1:
+		// 如果成功向 channel2 写入数据，进行该 case 处理语句
+	default:
+}
+```
