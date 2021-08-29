@@ -55,18 +55,11 @@ func (s *Server) Handler(conn net.Conn) {
 	// 处理业务逻辑
 	fmt.Println("连接建立成功")
 
-	user := NewUser(conn)
+	user := NewUser(conn, s)
 
-	// 用户加入到 OnlineMap
-	s.mapLock.Lock()
-	s.OnlineMap[user.Name] = user
-	s.mapLock.Unlock()
-
-	// 广播用户上线消息
-	s.BoardCase(user, "已上线")
+	user.Online()
 
 	// 处理用户发送的消息
-
 	go func() {
 		buf := make([]byte, 4096)
 		for {
@@ -74,7 +67,7 @@ func (s *Server) Handler(conn net.Conn) {
 
 			// 合法关闭
 			if n == 0 {
-				s.BoardCase(user, "下线")
+				user.Offline()
 				return
 			}
 
@@ -85,7 +78,8 @@ func (s *Server) Handler(conn net.Conn) {
 
 			// 提出用户消息，去掉 \n
 			msg := string(buf[:n-1])
-			s.BoardCase(user, msg)
+
+			user.DoMessage(msg)
 		}
 	}()
 
