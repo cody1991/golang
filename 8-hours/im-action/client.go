@@ -3,7 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io"
 	"net"
+	"os"
 )
 
 type Client struct {
@@ -65,6 +67,38 @@ func (c *Client) Menu() bool {
 	}
 }
 
+// 处理回应消息
+func (c *Client) DealResponse() {
+	// 一旦有数据，拷贝到 os.Stdout 标准输出上，永久阻塞监听
+	io.Copy(os.Stdout, c.conn)
+
+	// 等价于
+
+	// for {
+	// 	buf := make([]byte, 1024)
+	// 	c.conn.Read(buf)
+	// 	fmt.Println(buf)
+	// }
+}
+
+func (c *Client) UpdateName() bool {
+
+	fmt.Println("请输入用户名：")
+
+	fmt.Scanln(&c.Name)
+
+	sendMsg := "rename|" + c.Name + "\n"
+
+	_, err := c.conn.Write([]byte(sendMsg))
+
+	if err != nil {
+		fmt.Println("conn.Write error: ", err)
+		return false
+	}
+
+	return true
+}
+
 func (c *Client) Run() {
 	for c.flag != 0 {
 		for c.Menu() != true {
@@ -83,6 +117,7 @@ func (c *Client) Run() {
 		case 3:
 			// 改名字
 			fmt.Printf("选择改名字\n\n")
+			c.UpdateName()
 			break
 		}
 	}
@@ -99,6 +134,9 @@ func main() {
 	}
 
 	fmt.Println("NewClient 连接服务器成功")
+
+	// 开启一个 goroutine，处理回应的消息
+	go client.DealResponse()
 
 	// 客户端业务逻辑
 	client.Run()
