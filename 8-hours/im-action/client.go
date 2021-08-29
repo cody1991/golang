@@ -11,6 +11,7 @@ type Client struct {
 	ServerPort int    `json:"serverPort"`
 	Name       string `json:"name"`
 	conn       net.Conn
+	flag       int `json:"flag"`
 }
 
 func NewClient(serverIp string, serverPort int) *Client {
@@ -18,6 +19,7 @@ func NewClient(serverIp string, serverPort int) *Client {
 	client := &Client{
 		ServerIp:   serverIp,
 		ServerPort: serverPort,
+		flag:       999,
 	}
 
 	// 连接服务器
@@ -44,6 +46,48 @@ func init() {
 	flag.IntVar(&serverPort, "port", 8888, "设置服务器端口（默认8888）")
 }
 
+func (c *Client) Menu() bool {
+	var flag int
+
+	fmt.Println("1. 公聊模式")
+	fmt.Println("2. 私聊模式")
+	fmt.Println("3. 更新用户名")
+	fmt.Println("0. 退出")
+
+	fmt.Scanln(&flag)
+
+	if flag >= 0 && flag <= 3 {
+		c.flag = flag
+		return true
+	} else {
+		fmt.Println("请输入合法的数字范围")
+		return false
+	}
+}
+
+func (c *Client) Run() {
+	for c.flag != 0 {
+		for c.Menu() != true {
+			// 根据不同模式处理不同的业务
+		}
+
+		switch c.flag {
+		case 1:
+			// 公聊
+			fmt.Printf("选择公聊模式\n\n")
+			break
+		case 2:
+			// 私聊
+			fmt.Printf("选择私聊模式\n\n")
+			break
+		case 3:
+			// 改名字
+			fmt.Printf("选择改名字\n\n")
+			break
+		}
+	}
+}
+
 func main() {
 
 	flag.Parse()
@@ -57,5 +101,5 @@ func main() {
 	fmt.Println("NewClient 连接服务器成功")
 
 	// 客户端业务逻辑
-	select {}
+	client.Run()
 }
