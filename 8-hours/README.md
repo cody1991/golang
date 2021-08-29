@@ -404,3 +404,7 @@ select {
 ## 替换包版本
 
 `go mod edit -replace=xxx@1.0.0=xxx@1.0.1`
+
+## select
+
+更多的去了解

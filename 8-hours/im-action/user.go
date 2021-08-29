@@ -91,9 +91,39 @@ func (u *User) DoMessage(msg string) {
 			u.server.OnlineMap[newName] = u
 			u.server.mapLock.Unlock()
 
-			u.SendMessage("您已经更新用户名为" + newName)
+			u.SendMessage("您已经更新用户名为" + newName + "\n")
 		}
 
+	} else if len(msg) > 4 && msg[:3] == "to|" {
+		// 消息格式 to|张三|msg
+
+		// 获取名字
+		remoteName := strings.Split(msg, "|")[1]
+		if remoteName == "" {
+			u.SendMessage("消息格式不正确，请使用 to|张三|msg\n")
+			return
+		}
+
+		// 获取 张三 user 对象
+		remoteUser, ok := u.server.OnlineMap[remoteName]
+
+		if !ok {
+			u.SendMessage("该用户不存在\n")
+			return
+		}
+
+		content := strings.Split(msg, "|")[2]
+
+		if content == "" {
+			u.SendMessage("消息格式不正确，请使用 to|张三|msg\n")
+			return
+		}
+
+		remoteUser.SendMessage(u.Name + "对你说 : " + content)
+
+		// 获取消息类容
+
+		// 发送
 	} else {
 		u.server.BoardCase(u, msg)
 	}
