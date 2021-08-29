@@ -97,3 +97,30 @@ for index, value := range b {
 var slice2 []int
 slice2 = make([]int, 10) // 开辟10个位置的空间
 ```
+
+# 继承
+
+```go
+type Human struct {
+	name string
+	sex  string
+}
+
+type Super struct {
+	Human
+	level int
+}
+
+h := Human{
+  name: "张三",
+  sex:  "male",
+}
+
+s := Super{
+  Human{
+    name: "李四",
+    sex:  "male",
+  },
+  88,
+}
+```
