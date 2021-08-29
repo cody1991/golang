@@ -124,3 +124,88 @@ s := Super{
   88,
 }
 ```
+
+## 多态
+
+定义 interface 和 struct
+
+```go
+type Animal interface {
+	Sleep()
+	GetColor() string
+	GetType() string
+}
+
+type Cat struct {
+	color string
+	name  string
+}
+
+func (c *Cat) Sleep() {
+	fmt.Println(c.name, "Cat Sleep")
+}
+
+func (c *Cat) GetColor() string {
+	return c.color
+}
+
+func (c *Cat) GetType() string {
+	return "cat"
+}
+
+type Dog struct {
+	color string
+	name  string
+}
+
+func (d *Dog) GetColor() string {
+	return d.color
+}
+
+func (d *Dog) GetType() string {
+	return "dog"
+}
+
+func (d *Dog) Sleep() {
+	fmt.Println(d.name, "Dog Sleep")
+}
+```
+
+使用
+
+```go
+
+func showAnimal(animal Animal) {
+	animal.Sleep()
+
+	fmt.Println(animal.GetType())
+	fmt.Println(animal.GetColor())
+}
+
+func main () {
+
+  var animal Animal
+
+	animal = &Cat{
+		name:  "mimi",
+		color: "black",
+	}
+
+	fmt.Println(animal)
+
+	animal.Sleep()
+
+	cat := Cat{
+		name:  "haha",
+		color: "black",
+	}
+
+	dog := Dog{
+		name:  "hahaha",
+		color: "while",
+	}
+
+	showAnimal(&cat)
+	showAnimal(&dog)
+}
+```
