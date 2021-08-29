@@ -383,6 +383,8 @@ select {
 
 # go module
 
+## 指令
+
 - go mod init 生成 go.mod 文件
 - go mod download 下载 go.mod 指定的所有依赖
 - go mod tidy 整理依赖
@@ -391,3 +393,10 @@ select {
 - go mod vendor 导出项目所有的依赖到 vendor
 - go mod verify 检验某个模块是否被修改过
 - go mod why 查看为什么需要某个模块
+
+## 配置
+
+- GO111MODULE 是否开启 go mod 模式
+- GOPROXY 下载的地址，direct表示如果找不到会回到源 GitHub 地址下载
+- GOSUMOD 校验第三方库完整性
+- GOPRIVATE 私有第三方库在本地放置好，不用下载校验，可以用正则
