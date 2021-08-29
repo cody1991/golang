@@ -37,17 +37,14 @@ func main() {
 	b := &Book{}
 
 	// pair<type: Book, value: ''>
-	var r Reader
+	var r Reader = b
 
-	// pair<type: Book, value: book{} 地址>
-	r = b
+	// r: pair<type: Book, value: book{} 地址>
 
 	r.ReadBook()
 
-	var w Writer
-
-	// pair<type: Book, value: book{} 地址>
-	w = r.(Writer) // 断言可以成功？因为它们的 pair 是一致的
+	// w: pair<type: Book, value: book{} 地址>
+	var w Writer = r.(Writer) // 断言可以成功？因为它们的 pair 是一致的
 
 	w.WriteBook()
 }
