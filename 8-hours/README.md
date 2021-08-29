@@ -334,3 +334,31 @@ func main() {
 	fmt.Printf("%v\n", newMove)
 }
 ```
+
+# goroutine
+
+解决高CPU调度消耗和高内存占用问题
+
+## 解决高CPU调度消耗
+
+线程 = 多个线程(thread，内核空间) 绑定（协程调度器（轮询） 控制） 多个协程（co-routine，用户空间）
+
+## go
+
+co-routine => goroutine
+
+- 内存几KB，可大量存在
+- 灵活调度，可以切换
+
+GMP => gorountine + processor + thread
+
+## 调度器设计策略
+
+- 复用线程
+  - work stealing 机制
+  - hand off 机制
+- 利用并行 (GOMAXPROCS)
+  - CPU核 / 2
+- 抢占
+  - 协程切换成本低
+- 全局 G 队列
