@@ -221,3 +221,13 @@ if !ok {
 	fmt.Println(value, "is a string")
 }
 ```
+
+# 变量
+
+- 变量
+  - type
+    - static type 静态类型 (int, float64, string)
+    - concrete type 具体类型 (interface 指向的具体类型，系统看得见的类型)
+  - value
+
+`type + value = pair` pair 对
