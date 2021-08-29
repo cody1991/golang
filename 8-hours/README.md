@@ -81,7 +81,7 @@ func main() {
 
 `go env -w GO111MODULE=off`
 
-#
+# Array & Slice
 
 ```go
 b := [10]int{1, 2, 3, 4, 5}
@@ -91,4 +91,9 @@ fmt.Println(b)
 for index, value := range b {
   fmt.Println(index, value)
 }
+```
+
+```go
+var slice2 []int
+slice2 = make([]int, 10) // 开辟10个位置的空间
 ```
