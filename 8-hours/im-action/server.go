@@ -32,7 +32,7 @@ func NewServer(ip string, port int) *Server {
 
 // 广播消息
 func (s *Server) BoardCase(user *User, msg string) {
-	sendMsg := "[" + user.Address + "]" + user.Name + ":" + msg
+	sendMsg := "[" + user.Address + "]" + user.Name + ": " + msg
 
 	s.Message <- sendMsg
 }

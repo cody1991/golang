@@ -55,7 +55,26 @@ func (u *User) Offline() {
 	u.server.BoardCase(u, "已下线")
 }
 
+// 指定用户发送消息
+func (u *User) SendMessage(msg string) {
+	u.conn.Write([]byte(msg))
+}
+
 // 用户处理消息
 func (u *User) DoMessage(msg string) {
-	u.server.BoardCase(u, msg)
+
+	if msg == "who" {
+		// 查询当前用户
+		u.server.mapLock.Lock()
+
+		for _, user := range u.server.OnlineMap {
+			onlineMsg := "[" + user.Address + "]" + user.Name + ": 在线...\n"
+			u.SendMessage(onlineMsg)
+		}
+
+		u.server.mapLock.Unlock()
+	} else {
+		u.server.BoardCase(u, msg)
+	}
+
 }
