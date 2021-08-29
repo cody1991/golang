@@ -81,6 +81,30 @@ func (c *Client) DealResponse() {
 	// }
 }
 
+func (c *Client) PublicChat() {
+	// 提示用户输入消息
+	var msg string
+	fmt.Println("请输入聊天内容，exit退出")
+	fmt.Scanln(&msg)
+
+	for msg != "exit" {
+		if len(msg) != 0 {
+			sendMsg := msg + "\n"
+			_, err := c.conn.Write([]byte(sendMsg))
+
+			if err != nil {
+				fmt.Println("conn.Write error: ", err)
+				break
+			}
+		}
+
+		msg = ""
+		fmt.Println("请输入聊天内容，exit退出")
+		fmt.Scanln(&msg)
+	}
+
+}
+
 func (c *Client) UpdateName() bool {
 
 	fmt.Println("请输入用户名：")
@@ -109,6 +133,7 @@ func (c *Client) Run() {
 		case 1:
 			// 公聊
 			fmt.Printf("选择公聊模式\n\n")
+			c.PublicChat()
 			break
 		case 2:
 			// 私聊
