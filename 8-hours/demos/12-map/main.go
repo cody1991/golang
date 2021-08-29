@@ -21,7 +21,23 @@ func main() {
 
 	myMap3 := map[string]string{
 		"sz": "深圳",
+		"bg": "北京",
 	}
 	fmt.Println(myMap3)
 
+	printMap(myMap3)
+
+	delete(myMap3, "sz")
+
+	printMap(myMap3)
+
+}
+
+func printMap(myMap map[string]string) {
+	// myMap 是引用传递
+	for index, value := range myMap {
+		fmt.Println(index, value)
+	}
+
+	myMap["gz"] = "广州"
 }
