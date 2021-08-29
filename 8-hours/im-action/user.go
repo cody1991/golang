@@ -10,7 +10,7 @@ type User struct {
 }
 
 // 创建用户
-func (u *User) CreateUser(conn net.Conn) *User {
+func NewUser(conn net.Conn) *User {
 	userAddr := conn.RemoteAddr().String()
 	user := &User{
 		Name:    userAddr,
@@ -20,7 +20,7 @@ func (u *User) CreateUser(conn net.Conn) *User {
 	}
 
 	// 启动监听当前 user channel 消息的 goroutine
-	go u.ListenMessage()
+	go user.ListenMessage()
 
 	return user
 }
