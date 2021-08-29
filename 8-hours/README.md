@@ -380,3 +380,14 @@ select {
 - 无版本管理概念
 - 无法同步一致的第三方版本库
 - 无法指定第三方版本号
+
+# go module
+
+- go mod init 生成 go.mod 文件
+- go mod download 下载 go.mod 指定的所有依赖
+- go mod tidy 整理依赖
+- go mod graph 查看依赖结构
+- go mod edit 编辑 go.mod 文件
+- go mod vendor 导出项目所有的依赖到 vendor
+- go mod verify 检验某个模块是否被修改过
+- go mod why 查看为什么需要某个模块
