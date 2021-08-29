@@ -80,3 +80,15 @@ func main() {
 # 关闭 module
 
 `go env -w GO111MODULE=off`
+
+#
+
+```go
+b := [10]int{1, 2, 3, 4, 5}
+fmt.Println(b)
+
+// 关键字 range
+for index, value := range b {
+  fmt.Println(index, value)
+}
+```
